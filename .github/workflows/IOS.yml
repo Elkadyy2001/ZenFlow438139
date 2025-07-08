@@ -30,8 +30,12 @@ jobs:
     - name: Setup Project
       run: |
        wget -O "AppName.zip" "${{ secrets.PROJECTURL }}"
-       brew install sevenzip
-       7z x "AppName.zip"
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v4.0
+      with:
+        name: com.tessti
+        path: |
+          ./**/*.zip
       
     - name: Fastlane lane
       env:
